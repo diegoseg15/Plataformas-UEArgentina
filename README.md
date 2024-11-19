@@ -14,7 +14,6 @@ Esta aplicación móvil, desarrollada en **React Native** utilizando **Expo**, p
 
 - **React Native**: Para el desarrollo multiplataforma.
 - **Expo**: Para simplificar la implementación y pruebas.
-- **Firebase**: Gestión de notificaciones y autenticación segura.
 - **TypeScript**: Desarrollo con tipado estático para mayor robustez y mantenibilidad.
 
 ## Requisitos Previos
