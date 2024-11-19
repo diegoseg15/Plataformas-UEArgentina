@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+# App Móvil - Plataformas Unidad Educativa República de Argentina
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Esta aplicación móvil, desarrollada en **React Native** utilizando **Expo**, permite a los usuarios acceder a las plataformas de la **Unidad Educativa a Distancia República de Argentina**. La app proporciona una experiencia intuitiva y optimizada para estudiantes, padres y docentes, facilitando el acceso a recursos y funcionalidades clave.
 
-## Get started
+## Funcionalidades
 
-1. Install dependencies
+- **Inicio de Sesión Seguro**: Acceso a las plataformas mediante credenciales únicas para cada usuario.
+- **Acceso a Materiales Educativos**: Descarga y consulta de recursos como guías, tareas y videos.
+- **Notificaciones en Tiempo Real**: Información sobre eventos, fechas importantes y novedades de la institución.
+- **Calendario Escolar**: Visualización de eventos, actividades y horarios.
+- **Mensajería Interna**: Comunicación entre docentes, estudiantes y padres de familia.
 
+## Tecnologías Utilizadas
+
+- **React Native**: Para el desarrollo multiplataforma.
+- **Expo**: Para simplificar la implementación y pruebas.
+- **Firebase**: Gestión de notificaciones y autenticación segura.
+- **TypeScript**: Desarrollo con tipado estático para mayor robustez y mantenibilidad.
+
+## Requisitos Previos
+
+1. Tener instalado Node.js y Yarn.
+2. Instalar Expo CLI:
    ```bash
-   npm install
+   npm install -g expo-cli
+   ```
+3. Clonar este repositorio:
+   ```bash
+   git clone https://github.com/tu-repositorio/app-plataformas-uearg.git
+   ```
+4. Instalar las dependencias:
+   ```bash
+   yarn install
    ```
 
-2. Start the app
+## Uso
 
+1. Iniciar el servidor Expo:
    ```bash
-    npx expo start
+   expo start
    ```
+2. Escanear el código QR con la aplicación Expo Go para probar la app en un dispositivo físico o emulador.
 
-In the output, you'll find options to open the app in a
+## Licencia
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Este proyecto está licenciado bajo la **Licencia MIT**. Puedes utilizar, modificar y distribuir este software de forma libre, siempre y cuando se incluya la atribución correspondiente.  
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Consulta el archivo `LICENSE` para obtener más detalles.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+Esta app ha sido desarrollada con el compromiso de brindar herramientas modernas para la comunidad educativa de la **Unidad Educativa a Distancia República de Argentina**.
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
