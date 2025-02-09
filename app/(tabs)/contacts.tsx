@@ -1,109 +1,151 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Linking, ScrollView, useColorScheme } from 'react-native';
 
-export default function TabTwoScreen() {
+const ContactScreen: React.FC = () => {
+  const colorScheme = useColorScheme(); // Detectar el modo oscuro o claro
+
+  // Función para abrir enlaces telefónicos
+  const handleCall = (phoneNumber: string) => {
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
+  // Función para abrir el correo electrónico
+  const handleEmail = () => {
+    Linking.openURL('mailto:administracion@ueargentina.edu.ec');
+  };
+
+  // Función para abrir la página web del colegio
+  const handleWebsite = () => {
+    Linking.openURL('https://ueargentina.edu.ec/');
+  };
+
+  // Función para abrir las redes sociales
+  const handleSocialLink = (url: string) => {
+    Linking.openURL(url);
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Contactos</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/contactos.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <ScrollView style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#121212' : '#fff' }]}>
+
+      {/* Nueva sección: Página web */}
+      <ThemedText type='title' style={[styles.title, { color: colorScheme === 'dark' ? '#fff' : '#000' }]}>Visita nuestra Página Web</ThemedText>
+      <TouchableOpacity onPress={handleWebsite} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+        <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>www.ueargentina.edu.ec</Text>
+      </TouchableOpacity>
+
+      {/* Nueva sección: Redes sociales */}
+      <ThemedText type='title' style={[styles.title, { color: colorScheme === 'dark' ? '#fff' : '#000' }]}>Síguenos en Redes Sociales</ThemedText>
+      <View style={styles.socialContainer}>
+        <TouchableOpacity onPress={() => handleSocialLink('https://www.facebook.com/ue.argentina')} style={[styles.socialButton]}>
+          <Text style={styles.socialButtonText}>Facebook</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleSocialLink('https://tiktok.com/ued_republicadeargentina')} style={[styles.socialButton]}>
+          <Text style={styles.socialButtonText}>TikTok</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleSocialLink('https://www.instagram.com/ueargentina')} style={[styles.socialButton]}>
+          <Text style={styles.socialButtonText}>Instagram</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ThemedText type='title' style={[styles.title]}>Contáctanos</ThemedText>
+
+      <View style={styles.contactContainer}>
+        <ThemedText type='subtitle' style={[styles.sectionTitle]}>Teléfonos:</ThemedText>
+        <TouchableOpacity onPress={() => handleCall('+59332825180')} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+          <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>Ambato: (+593)3 2 825 180</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleCall('+593995690287')} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+          <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>Latacunga: (+593)99 569 0287</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleCall('+59332568928')} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+          <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>La Maná: (+593)3 2 568 928</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleCall('+593994601717')} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+          <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>La Maná: (+593)99 460 1717</Text>
+        </TouchableOpacity>
+
+        <ThemedText type='subtitle' style={[styles.sectionTitle]}>Email:</ThemedText>
+        <TouchableOpacity onPress={handleEmail} style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#333' : '#f0f0f0' }]}>
+          <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#fff' : '#007BFF' }]}>administracion@ueargentina.edu.ec</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ThemedText type='title' style={[styles.title, { color: colorScheme === 'dark' ? '#fff' : '#000' }]}>Visítanos En</ThemedText>
+
+      <View style={styles.addressContainer}>
+        <ThemedText type='default' style={[styles.contactText]}>Ambato: Rocafuerte 1720 y Guayaquil</ThemedText>
+        <ThemedText type='default' style={[styles.contactText]}>Latacunga: Amazonas 8100 y Sucre</ThemedText>
+        <ThemedText type='default' style={[styles.contactText]}>La Maná: Amazonas y los Álamos</ThemedText>
+      </View>
+
+
+
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    padding: 20,
   },
-  titleContainer: {
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 5,
+  },
+  contactContainer: {
+    marginVertical: 20,
+  },
+  addressContainer: {
+    marginTop: 10,
+    marginBottom: 50,
+  },
+  button: {
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginVertical: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3, // Sombra para Android
+    shadowColor: '#000', // Sombra para iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  contactText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginVertical: 5,
+  },
+  socialContainer: {
     flexDirection: 'row',
-    gap: 8,
+    justifyContent: 'space-around',
+    marginVertical: 20,
+  },
+  socialButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    backgroundColor: '#007BFF',
+    marginVertical: 8,
+  },
+  socialButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
+
+export default ContactScreen;
