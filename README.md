@@ -50,3 +50,4 @@ Consulta el archivo `LICENSE` para obtener más detalles.
 
 Esta app ha sido desarrollada con el compromiso de brindar herramientas modernas para la comunidad educativa de la **Unidad Educativa a Distancia República de Argentina**.
 
+![Presentación de la app de plataformas de UEArgentina](https://github.com/diegoseg15/Plataformas-UEArgentina/blob/main/assets/images/Screenshot.jpg?raw=true)
