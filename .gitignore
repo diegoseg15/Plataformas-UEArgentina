@@ -8,6 +8,7 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+android/
 
 # Native
 *.orig.*
@@ -25,6 +26,8 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 yarn.lock
+pnpm-lock.yaml
+package-lock.json
 
 # macOS
 .DS_Store
