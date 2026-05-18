@@ -15,13 +15,9 @@ export function InternalWebLink({
   ...props
 }: InternalWebLinkProps) {
   const openInternalBrowser = () => {
-    router.push({
-      pathname: "/browser",
-      params: {
-        url: encodeURIComponent(href),
-        title,
-      },
-    });
+    router.push(
+      `/browser?url=${encodeURIComponent(href)}&title=${encodeURIComponent(title)}`,
+    );
   };
 
   return (
