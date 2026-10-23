@@ -60,21 +60,21 @@ const HomeScreen: React.FC = () => {
     <View style={styles.container}>
       {/* Contenedor de las tarjetas */}
       <View style={[styles.gridContainer, isLargeScreen && styles.largeScreenContainer]}>
-        <ExternalLink href="http://colegioargentina.net/aulavirtual/login/index.php">
+        <ExternalLink href="https://ueargentina.edu.ec/plataforma/sierra">
           <View style={styles.card}>
             <Ionicons name="book-outline" size={50} color={isDarkMode ? 'white' : 'gray'} />
             <Text style={styles.cardText}>Régimen Sierra</Text>
           </View>
         </ExternalLink>
 
-        <ExternalLink href="https://ueargentina.net/costa/login/index.php">
+        <ExternalLink href="https://ueargentina.edu.ec/plataforma/costa">
           <View style={styles.card}>
             <Ionicons name="school-outline" size={50} color={isDarkMode ? 'white' : 'gray'} />
             <Text style={styles.cardText}>Régimen Costa</Text>
           </View>
         </ExternalLink>
 
-        <ExternalLink href="http://colegioargentina.net/aulavirtual/login/index.php">
+        <ExternalLink href="https://ueargentina.edu.ec/plataforma/semipresencial">
           <View style={styles.card}>
             <Ionicons name="laptop-outline" size={50} color={isDarkMode ? 'white' : 'gray'} />
             <Text style={styles.cardText}>Semi Presencial</Text>
