@@ -1,53 +1,41 @@
-# App Móvil - Plataformas Unidad Educativa República de Argentina
+# Plataformas UEArgentina
 
-Esta aplicación móvil, desarrollada en **React Native** utilizando **Expo**, permite a los usuarios acceder a las plataformas de la **Unidad Educativa a Distancia República de Argentina**. La app proporciona una experiencia intuitiva y optimizada para estudiantes, padres y docentes, facilitando el acceso a recursos y funcionalidades clave.
+Aplicación de la Unidad Educativa a Distancia República de Argentina. Reúne accesos a Sierra, Costa, Semipresencial y Europa, los contactos institucionales y los ajustes de permisos. Las plataformas se abren con el navegador del sistema; la autenticación y el contenido educativo pertenecen a esos sitios.
 
-## Funcionalidades
+La actualización parte del tag `v1.0.3` y conserva sus pantallas. Utiliza Expo SDK 58, React Native y TypeScript. No incorpora un backend de mensajería, calendario o envío de notificaciones.
 
-- **Inicio de Sesión Seguro**: Acceso a las plataformas mediante credenciales únicas para cada usuario.
-- **Acceso a Materiales Educativos**: Descarga y consulta de recursos como guías, tareas y videos.
-- **Notificaciones en Tiempo Real**: Información sobre eventos, fechas importantes y novedades de la institución.
-- **Calendario Escolar**: Visualización de eventos, actividades y horarios.
-- **Mensajería Interna**: Comunicación entre docentes, estudiantes y padres de familia.
+## Desarrollo
 
-## Tecnologías Utilizadas
+Utiliza Node.js 24 LTS (`.nvmrc`) y npm. Instala las versiones del archivo de bloqueo:
 
-- **React Native**: Para el desarrollo multiplataforma.
-- **Expo**: Para simplificar la implementación y pruebas.
-- **TypeScript**: Desarrollo con tipado estático para mayor robustez y mantenibilidad.
+```sh
+npm ci
+npm start
+```
 
-## Requisitos Previos
+Para web: `npm run web`. Para generar e iniciar una compilación de desarrollo: `npm run android` o `npm run ios` (iOS requiere macOS y Xcode). Configura previamente Android Studio/JDK o Xcode.
 
-1. Tener instalado Node.js y Yarn.
-2. Instalar Expo CLI:
-   ```bash
-   npm install -g expo-cli
-   ```
-3. Clonar este repositorio:
-   ```bash
-   git clone https://github.com/tu-repositorio/app-plataformas-uearg.git
-   ```
-4. Instalar las dependencias:
-   ```bash
-   yarn install
-   ```
+Después de cambiar de SDK, genera una nueva compilación de desarrollo. Un cliente nativo compilado con otro SDK no es compatible. Consulta las [notas de SDK 58](https://expo.dev/changelog/sdk-58) para conocer la disponibilidad de Expo Go.
 
-## Uso
+## Validación
 
-1. Iniciar el servidor Expo:
-   ```bash
-   expo start
-   ```
-2. Escanear el código QR con la aplicación Expo Go para probar la app en un dispositivo físico o emulador.
+```sh
+npm run typecheck
+npm run lint
+npm test
+npm run doctor
+npm run audit:security
+npx expo export --platform all
+```
 
-## Licencia
+No uses `npm audit fix --force`: puede instalar versiones nativas incompatibles con Expo. Para actualizar, revisa el [procedimiento oficial](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/), alinea las dependencias con `npx expo install --fix` y repite las comprobaciones.
 
-Este proyecto está licenciado bajo la **Licencia MIT**. Puedes utilizar, modificar y distribuir este software de forma libre, siempre y cuando se incluya la atribución correspondiente.  
+## Notificaciones
 
-Consulta el archivo `LICENSE` para obtener más detalles.
+El ajuste consulta y solicita el permiso del dispositivo en compilaciones nativas. En Android crea el canal antes de solicitarlo. Para revocar el permiso abre los ajustes del sistema y vuelve a consultar su estado al regresar. En web y Expo Go el interruptor está deshabilitado. Esto no configura un servicio de notificaciones remotas: requiere credenciales FCM/APNs y un emisor.
 
----
+## Publicación
 
-Esta app ha sido desarrollada con el compromiso de brindar herramientas modernas para la comunidad educativa de la **Unidad Educativa a Distancia República de Argentina**.
+El identificador Android se mantiene en `com.ueargentina.plataformas`. `eas.json` contiene perfiles development, preview (APK) y production. Antes de publicar, acuerda el número de versión comercial y comprueba el `versionCode` remoto de EAS/Play Console; el tag original declara `1.0.0` aunque se llama `v1.0.3`.
 
-![Presentación de la app de plataformas de UEArgentina](https://github.com/diegoseg15/Plataformas-UEArgentina/blob/main/assets/images/Screenshot.jpg?raw=true)
+Consulta [la revisión de seguridad](docs/SECURITY-REVIEW.md) para conocer las comprobaciones y sus límites.
