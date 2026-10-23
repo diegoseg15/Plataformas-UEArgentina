@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform, View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { Ionicons } from '@expo/vector-icons';
@@ -71,7 +71,7 @@ export default function TabLayout() {
               <Ionicons
                 name={focused ? 'home' : 'home-outline'} // Cambia dinámicamente el icono
                 size={30}
-                color={color}
+                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
               />
             ),
           }}
@@ -84,7 +84,7 @@ export default function TabLayout() {
               <Ionicons
                 name={focused ? 'call' : 'call-outline'} // Cambia dinámicamente el icono
                 size={30}
-                color={color}
+                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
               />
             ),
           }}
@@ -97,7 +97,7 @@ export default function TabLayout() {
               <Ionicons
                 name={focused ? 'settings' : 'settings-outline'} // Cambia dinámicamente el icono
                 size={30}
-                color={color}
+                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
               />
             ),
           }}
