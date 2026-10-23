@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+.upgrade-backup/
 
 # Expo
 .expo/
@@ -27,7 +28,6 @@ yarn-debug.*
 yarn-error.*
 yarn.lock
 pnpm-lock.yaml
-package-lock.json
 
 # macOS
 .DS_Store
