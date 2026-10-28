@@ -1,12 +1,20 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { Ionicons } from '@expo/vector-icons';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+
+const tabItems: Record<string, {
+  label: string;
+  activeIcon: React.ComponentProps<typeof Ionicons>['name'];
+  inactiveIcon: React.ComponentProps<typeof Ionicons>['name'];
+}> = {
+  index: { label: 'Home', activeIcon: 'home', inactiveIcon: 'home-outline' },
+  contacts: { label: 'Contactos', activeIcon: 'call', inactiveIcon: 'call-outline' },
+  settings: { label: 'Configuración', activeIcon: 'settings', inactiveIcon: 'settings-outline' },
+};
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -27,20 +35,35 @@ export default function TabLayout() {
     },
     tabBar: {
       backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF',
-      borderTopWidth: 1,
-      borderTopColor: isDarkMode ? '#444' : '#DDD',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      height: 75,
+      borderTopWidth: 0,
+      paddingTop: 12,
+      paddingHorizontal: 12,
+      minHeight: 80,
     },
-    tabIcon: {
-      fontSize: 30,
-      marginVertical: 5,
+    tabItem: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    tabButton: {
+      flex: 0,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: 48,
+      borderRadius: 50,
+      paddingHorizontal: 18,
+      paddingVertical: 10,
+      gap: 8,
+    },
+    activeTabButton: {
+      backgroundColor: isDarkMode ? '#E2E8F0' : '#1E293B',
     },
     tabLabel: {
       fontSize: 14,
       fontWeight: 'bold',
-      marginTop: 2,
+      color: isDarkMode ? '#0F172A' : '#FFFFFF',
+      flexShrink: 1,
     },
   });
 
@@ -54,52 +77,49 @@ export default function TabLayout() {
       </View>
 
       <Tabs
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        screenOptions={({ route }) => ({
           headerShown: false,
-          tabBarButton: HapticTab,
-          tabBarBackground: TabBarBackground,
+          tabBarButton: (props) => {
+            const focused = props['aria-selected'] === true;
+            const tab = tabItems[route.name];
+            const iconColor = focused
+              ? (isDarkMode ? '#0F172A' : '#FFFFFF')
+              : (isDarkMode ? '#CBD5E1' : '#475569');
+
+            return (
+              <HapticTab
+                {...props}
+                style={[props.style, styles.tabButton, focused && styles.activeTabButton]}>
+                <Ionicons
+                  name={focused ? tab.activeIcon : tab.inactiveIcon}
+                  size={26}
+                  color={iconColor}
+                  accessible={false}
+                />
+                {focused && <Text style={styles.tabLabel}>{tab.label}</Text>}
+              </HapticTab>
+            );
+          },
           tabBarStyle: styles.tabBar,
-          tabBarLabelStyle: styles.tabLabel,
-          tabBarIconStyle: styles.tabIcon,
-        }}>
+          tabBarItemStyle: styles.tabItem,
+          tabBarShowLabel: false,
+        })}>
         <Tabs.Screen
           name="index"
           options={{
             title: 'Inicio',
-            tabBarIcon: ({ focused, color }) => (
-              <Ionicons
-                name={focused ? 'home' : 'home-outline'} // Cambia dinámicamente el icono
-                size={30}
-                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
-              />
-            ),
           }}
         />
         <Tabs.Screen
           name="contacts"
           options={{
             title: 'Contactos',
-            tabBarIcon: ({ focused, color }) => (
-              <Ionicons
-                name={focused ? 'call' : 'call-outline'} // Cambia dinámicamente el icono
-                size={30}
-                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
-              />
-            ),
           }}
         />
         <Tabs.Screen
           name="settings"
           options={{
             title: 'Configuración',
-            tabBarIcon: ({ focused, color }) => (
-              <Ionicons
-                name={focused ? 'settings' : 'settings-outline'} // Cambia dinámicamente el icono
-                size={30}
-                color={typeof color === 'string' ? color : Colors[colorScheme ?? 'light'].tint}
-              />
-            ),
           }}
         />
       </Tabs>
