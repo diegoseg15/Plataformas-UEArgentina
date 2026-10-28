@@ -4,6 +4,8 @@ Aplicación de la Unidad Educativa a Distancia República de Argentina. Reúne a
 
 La actualización parte del tag `v1.0.3` y conserva sus pantallas. Utiliza Expo SDK 58, React Native y TypeScript. No incorpora un backend de mensajería, calendario o envío de notificaciones.
 
+Versión actual: `1.2.0` (Android `versionCode` 6, `versionName` 1.2.0).
+
 ## Qué es y qué no es la app
 
 **Sí es:**
@@ -31,7 +33,7 @@ Versiones instaladas (verificadas en `node_modules`, expo SDK 58):
 | React | 19.3.0 |
 | TypeScript | 6.0.3 |
 | ESLint | 9.39.5 (`eslint-config-expo`) |
-| Expo Router | ~58.0.25 (rutas con `typedRoutes`) |
+| Expo Router | ~58.0.27 (rutas con `typedRoutes`) |
 | Jest | ^30.5.2 (`jest-expo`) |
 
 Otras dependencias destacadas: `expo-notifications`, `expo-web-browser`, `expo-haptics`, `react-native-reanimated`, `react-native-gesture-handler`, `@expo/vector-icons` y `react-native-web`.
