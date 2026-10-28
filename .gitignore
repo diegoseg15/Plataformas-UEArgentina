@@ -40,3 +40,7 @@ pnpm-lock.yaml
 *.tsbuildinfo
 
 app-example
+
+# local artifacts
+.openchamber/
+*.log
